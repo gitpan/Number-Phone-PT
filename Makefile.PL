@@ -7,6 +7,5 @@ WriteMakefile(
     'VERSION_FROM'	=> 'PT.pm', # finds $VERSION
     'PREREQ_PM'		=> {}, # e.g., Module::Name => 1.1
     ($] >= 5.005 ?    ## Add these new keywords supported since 5.005
-      (#ABSTRACT_FROM => 'PT.pm', # retrieve abstract from module
-       AUTHOR     => 'Jose Alves de Castro <jac@localdomain>') : ()),
+      (AUTHOR     => 'Jose Alves de Castro <jac@natura.di.uminho.pt>') : ()),
 );

@@ -1,16 +1,22 @@
 Number/Phone/PT version 0.02
 ============================
 
-The README is used to introduce the module and provide instructions on
-how to install the module, any machine dependencies it may have (for
-example C compilers and installed libraries) and any other information
-that should be provided before the module is installed.
+Validate Portuguese phone numbers
 
-A README file is required for CPAN modules since CPAN extracts the
-README file from a module distribution so that people browsing the
-archive can use it get an idea of the modules uses. It is usually a
-good idea to provide version information here so that people can
-decide whether fixes for the module are worth downloading.
+  use Number::Phone::PT;
+
+  $number = 258374162;
+
+  print "$number is valid" if is_valid($number);
+
+  print "$number belongs to a home" if is_residential($number);
+
+  print "$number is a celular phone" if is_mobile($number);
+
+  print "$number belongs to someone" if is_personal($number);
+  # same thing as ( is_residential($number) or is_mobile($number) )
+
+  print "$number is from " . area_of($number) if is_residential($number);
 
 INSTALLATION
 
@@ -25,9 +31,11 @@ DEPENDENCIES
 
 No dependencies
 
-COPYRIGHT AND LICENCE
+SEE ALSO
 
-Put the correct copyright and licence information here.
+The POD documentation in PT.pm
+
+COPYRIGHT AND LICENCE
 
 Copyright (C) 2004 Jose Alves de Castro
 

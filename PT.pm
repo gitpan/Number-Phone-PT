@@ -18,7 +18,7 @@ our @EXPORT = qw(
 	is_valid is_residential is_mobile is_personal area_of
 );
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 =head1 NAME
 
@@ -179,11 +179,11 @@ __END__
 
 =head1 DESCRIPTION
 
-Validates Portuguese phone numbers. Does not check whether they exist or not;
-it just validates to see if they are well written.
+Validates Portuguese phone numbers. Does not check whether they exist
+or not; it just validates to see if they are well written.
 
-Special numbers (as the emergency number 112, for instance), are currently not
-comtemplated.
+Special numbers (as the emergency number 112, for instance), are
+currently not comtemplated.
 
 =head1 PORTUGUESE PHONE NUMBERS
 
@@ -198,7 +198,7 @@ Residential numbers always start with the digit 2. The first few digits
 identify the region it belongs to. Here is the list (note that the function
 C<area_of> may return accentuated words):
 
-=over residential
+=over 4
 
 =item 21  lisboa
 
@@ -307,7 +307,7 @@ C<area_of> may return accentuated words):
 Mobile numbers always start with the digit 9. The first two digits
 identify the operator it belongs to. Here is the list:
 
-=over mobile
+=over 4
 
 =item 91  Vodafone / Yorn
 
@@ -323,7 +323,7 @@ Service numbers start with 707, 760, 800 or 808 (currently). Please refer to
 Portugal Telecom in order to know how they work, as they change from time to
 time.
 
-=over service
+=over 4
 
 =item 707 numero unico
 
@@ -335,9 +335,15 @@ time.
 
 =back
 
+=head1 MESSAGE FROM THE AUTHOR
+
+If you're using this module, please drop me a line to my e-mail. Tell
+me what you're doing with it. Also, feel free to suggest new
+bugs^H^H^H^H^H features.
+
 =head1 AUTHOR
 
-Jose Alves de Castro, E<lt>jac@natura.di.uminho.pt<gt>
+Jose Alves de Castro, E<lt>cog [at] cpan [dot] org<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
