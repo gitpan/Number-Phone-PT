@@ -1,0 +1,9 @@
+Revision history for Perl extension Number::Phone::PT.
+
+0.01  Mon May 11 02:22:34 2004
+	- first release ready
+
+0.01  Mon May 10 21:16:34 2004
+	- original version; created by h2xs 1.22 with options
+		-XAn Number::Phone::PT
+
