@@ -18,7 +18,7 @@ our @EXPORT = qw(
 	is_valid is_residential is_mobile is_personal area_of
 );
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 NAME
 
@@ -27,6 +27,8 @@ Number::Phone::PT - Validate Portuguese phone numbers
 =head1 SYNOPSIS
 
   use Number::Phone::PT;
+
+  $number = 258374162;
 
   print "$number is valid" if is_valid($number);
 
@@ -42,32 +44,36 @@ Number::Phone::PT - Validate Portuguese phone numbers
 =cut
 
 my %indicativos;
+my %special;
 
 BEGIN {
   %indicativos = (
     21  => 'lisboa',
     22  => 'porto',
     231 => 'mealhada',
-    232 => 'mangualde,tondela,viseu',
+    232 => 'viseu',
     233 => 'figueira da foz',
-    234 => 'aveiro,águeda',
+    234 => 'aveiro',
+    235 => 'arganil',
     236 => 'pombal',
-    239 => 'coimbra,condeixa,penacova',
-    242 => 'santarém',
+    238 => 'seia',
+    239 => 'coimbra',
+    241 => 'abrantes',
+    242 => 'ponte de sôr',
     243 => 'santarém',
-    244 => 'marinha grande,leiria',
+    244 => 'leiria',
     245 => 'portalegre',
-    249 => 'tomar,torres novas',
+    249 => 'torres novas',
     251 => 'valença',
-    252 => 'famalicão,póvoa do varzim,santo tirso,trofa',
-    253 => 'braga,fafe,guimarães,barcelos',
-    254 => 'régua',
-    255 => 'amarante,felgueiras,penafiel',
-    256 => 'ovar,são joão da madeira',
+    252 => 'vila nova de famalicão',
+    253 => 'braga',
+    254 => 'peso da régua',
+    255 => 'penafiel',
+    256 => 'são joão da madeira',
     258 => 'viana do castelo',
     259 => 'vila real',
-    261 => 'mafra,torres vedras,lourinhã',
-    263 => 'caldas da raínha,peniche',
+    261 => 'torres vedras',
+    263 => 'caldas da raínha',
     265 => 'setúbal',
     266 => 'évora',
     268 => 'estremoz',
@@ -75,23 +81,23 @@ BEGIN {
     271 => 'guarda',
     272 => 'castelo branco',
     273 => 'bragança',
-    274 => 'sertã',
+    274 => 'proença-a-nova',
     275 => 'covilhã',
     276 => 'chaves',
-    277 => 'castelo branco',
+    277 => 'idanha-a-nova',
     278 => 'mirandela',
     279 => 'moncorvo',
     281 => 'tavira',
-    282 => 'lagos,portimão',
-    283 => 'beja',
+    282 => 'portimão',
+    283 => 'odemira',
     284 => 'beja',
-    285 => 'beja',
-    286 => 'beja',
-    289 => 'faro,quarteira',
-    291 => 'funchal',
-    292 => 'horta,madalena,santa cruz das flores',
-    295 => 'angra do heroísmo',
-    296 => 'ponta delgada',
+    285 => 'moura',
+    286 => 'castro verde',
+    289 => 'faro',
+    291 => 'funchal, porto santo',
+    292 => 'corvo, faial, flores, horta, pico',
+    295 => 'angra do heroísmo, graciosa, são jorge, terceira',
+    296 => 'ponta delgada, são miguel, santa maria',
 
     91  => 'rede móvel 91 (Vodafone / Yorn)',
     93  => 'rede móvel 93 (Optimus)',
@@ -101,6 +107,28 @@ BEGIN {
     760 => 'número único',
     800 => 'número grátis',
     808 => 'chamada local',
+  );
+
+  %special = (  # currently unused (yet)
+    # Telefones úteis
+    120		=> 'Chamadas Nacionais a Pagar no Destino',
+    120		=> 'PT Multivozes',
+    16200	=> 'Serviço a Clientes',
+    12161	=> 'Despertar',
+    1583	=> 'Telegramas Nacional',
+    16208	=> 'Assistência Técnica',
+    # Serviços de informações
+    118		=> 'Serviço Informativo Nacional',
+    12150	=> 'Meteorologia',
+    12151	=> 'Horas',
+    12153	=> 'Notícias',
+    12157	=> 'Desporto',
+    12158	=> 'Lotaria, Totobola e Totoloto',
+    # Internacional
+    171		=> 'Chamadas com Assistência',
+    177		=> 'Listas Telefónicas Internacionais',
+    179	=> 'Informações Gerais sobre o Serviço Telefónico Internacional',
+    1582	=> 'Telegramas Internacional',
   );
 }
 
@@ -178,45 +206,51 @@ C<area_of> may return accentuated words):
 
 =item 231 mealhada
 
-=item 232 mangualde,tondela,viseu
+=item 232 viseu
 
 =item 233 figueira da foz
 
-=item 234 aveiro,agueda
+=item 234 aveiro
+
+=item 235 arganil
 
 =item 236 pombal
 
-=item 239 coimbra,condeixa,penacova
+=item 238 seia
 
-=item 242 santarem
+=item 239 coimbra
+
+=item 241 abrantes
+
+=item 242 ponte de sor
 
 =item 243 santarem
 
-=item 244 marinha grande,leiria
+=item 244 leiria
 
 =item 245 portalegre
 
-=item 249 tomar,torres novas
+=item 249 torres novas
 
 =item 251 valenca
 
-=item 252 famalicao,povoa do varzim,santo tirso,trofa
+=item 252 vila nova de famalicao
 
-=item 253 braga,fafe,guimaraes,barcelos
+=item 253 braga
 
-=item 254 regua
+=item 254 peso da regua
 
-=item 255 amarante,felgueiras,penafiel
+=item 255 penafiel
 
-=item 256 ovar,sao joao da madeira
+=item 256 sao joao da madeira
 
 =item 258 viana do castelo
 
 =item 259 vila real
 
-=item 261 mafra,torres vedras,lourinha
+=item 261 torres vedras
 
-=item 263 caldas da rainha,peniche
+=item 263 caldas da rainha
 
 =item 265 setubal
 
@@ -232,13 +266,13 @@ C<area_of> may return accentuated words):
 
 =item 273 braganca
 
-=item 274 serta
+=item 274 proenca-a-nova
 
 =item 275 covilha
 
 =item 276 chaves
 
-=item 277 castelo branco
+=item 277 idanha-a-nova
 
 =item 278 mirandela
 
@@ -246,25 +280,25 @@ C<area_of> may return accentuated words):
 
 =item 281 tavira
 
-=item 282 lagos,portimao
+=item 282 portimao
 
-=item 283 beja
+=item 283 odemira
 
 =item 284 beja
 
-=item 285 beja
+=item 285 moura
 
-=item 286 beja
+=item 286 castro verde
 
-=item 289 faro,quarteira
+=item 289 faro
 
-=item 291 funchal
+=item 291 funchal, porto santo
 
-=item 292 horta,madalena,santa cruz das flores
+=item 292 corvo, faial, flores, horta, pico
 
-=item 295 angra do heroismo
+=item 295 angra do heroismo, graciosa, sao jorge, terceira
 
-=item 296 ponta delgada
+=item 296 ponta delgada, sao miguel, santa maria
 
 =back
 
@@ -286,15 +320,16 @@ identify the operator it belongs to. Here is the list:
 =head2 SERVICE NUMBERS
 
 Service numbers start with 707, 760, 800 or 808 (currently). Please refer to
-Portugal Telecom in order to know how they work.
+Portugal Telecom in order to know how they work, as they change from time to
+time.
 
 =over service
 
-=item 707 número único
+=item 707 numero unico
 
-=item 760 número único
+=item 760 numero unico
 
-=item 800 número grátis
+=item 800 numero gratis
 
 =item 808 chamada local
 

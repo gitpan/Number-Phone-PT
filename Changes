@@ -1,5 +1,8 @@
 Revision history for Perl extension Number::Phone::PT.
 
+0.02  Mon May 11 17:56:34 2004
+	- changed the list of area codes (thanks to Jorge Silva :-) )
+
 0.01  Mon May 11 02:22:34 2004
 	- first release ready
 
