@@ -1,5 +1,9 @@
 Revision history for Perl extension Number::Phone::PT.
 
+0.05  Sep Thu 30 23:18:34 2004
+	- Perl required version is now 5.006 (was 5.008)
+	- added META.yml
+
 0.04  Mon May 19 15:08:34 2004
 	- corrected 262 and 263
 

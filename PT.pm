@@ -1,6 +1,6 @@
 package Number::Phone::PT;
 
-use 5.008;
+use 5.006;
 use strict;
 use warnings;
 
@@ -18,7 +18,7 @@ our @EXPORT = qw(
 	is_valid is_residential is_mobile is_personal area_of
 );
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 =head1 NAME
 
