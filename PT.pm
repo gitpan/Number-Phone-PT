@@ -18,7 +18,7 @@ our @EXPORT = qw(
 	is_valid is_residential is_mobile is_personal area_of
 );
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 =head1 NAME
 
@@ -73,7 +73,8 @@ BEGIN {
     258 => 'viana do castelo',
     259 => 'vila real',
     261 => 'torres vedras',
-    263 => 'caldas da raínha',
+    262 => 'caldas da raínha',
+    263 => 'vila franca de xira',
     265 => 'setúbal',
     266 => 'évora',
     268 => 'estremoz',

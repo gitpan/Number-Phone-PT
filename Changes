@@ -1,5 +1,8 @@
 Revision history for Perl extension Number::Phone::PT.
 
+0.04  Mon May 19 15:08:34 2004
+	- corrected 262 and 263
+
 0.03  Mon May 11 14:06:34 2004
 	- updated documentation
 
